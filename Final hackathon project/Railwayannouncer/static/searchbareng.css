@@ -1,29 +1,17 @@
 body, html {
-    height: 100%;
     margin: 0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
    
   }
   
   
-  .tablink {
-    background-color: #555;
-    color: white;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
-    width: 33.3%;
-  }
   
-  .tablink:hover {
-    background-color: #777;
-  }
+  
+
   
   .tabcontent {
-    color: white;
+    color: rgb(255, 255, 255);
     display: none;
     padding: 100px 20px;
     height: 100%;
@@ -33,6 +21,8 @@ body, html {
     flex-direction: column;
     align-content: center;
     text-align: center;
+    font-size: 1.2rem;
+    text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black, 1px 1px black, -1px -1px black, -1px 1px black, 1px -1px black;
   }
   
   
@@ -122,9 +112,8 @@ body, html {
   
   
   
-  #Home {background-color: black;}
-  #ENGLISH-HINDI{background-color: rgb(39, 55, 77);}
-  #ENGLISH-MARTAHI{background-color: rgb(157,178,191);}
+  #Home {background-image: url(https://gumlet.assettype.com/knocksense%2F2022-09%2Fcf6472af-7286-43a5-92b1-254e6d7535b9%2Fpeople_at_the_train_station_2526935.webp?rect=0%2C234%2C1248%2C702&auto=format%2Ccompress&fit=max&format=webp&w=480&dpr=2.6);
+    background-size: cover;}
   button{
     border: 0px;
   }
