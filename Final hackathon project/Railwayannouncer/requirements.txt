@@ -1,0 +1,11 @@
+# this is the package which you need to download in order to run this project 
+# simply use your terminal 
+
+
+Django
+googletrans
+indic-transliteration
+gTTS
+pyttsx3
+transformers
+torch

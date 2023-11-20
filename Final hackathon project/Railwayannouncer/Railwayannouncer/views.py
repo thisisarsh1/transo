@@ -6,6 +6,7 @@ from gtts import gTTS
 import os
 import pyttsx3
 import time
+import socket
 # from unidecode import unidecode
 
 
@@ -20,49 +21,141 @@ def searchbarmarathi(request):
 
 
 def anounceineng(request):
-    text = (request.GET.get('Text','default'))
-    print(text)
-
-    def translate_to_hindi(text):
-        translator = Translator()
-        translated_text = translator.translate(text, src='en', dest='hi')
-        return translated_text.text
-
-    english_text = text
-    hindi= translate_to_hindi(english_text)
+    english_text = request.GET.get('Text','default').upper()
+    print(english_text)
 
 
-    def translate_to_marathi(text):
-        translator = Translator()
-        translated_text = translator.translate(text, src='en', dest='mr')
-        return translated_text.text
+    def is_internet_available():
+        try:
+            # Try to connect to a well-known website (in this case, Google's DNS server)
+            socket.create_connection(("8.8.8.8", 53), timeout=3)
+            return True
+        except OSError:
+            return False
 
-    marathi = translate_to_marathi(english_text)
-    
-    
-    text_to_speak = text  # Replace with your desired text
-    txt = (request.GET.get('text','default'))
-    print(txt)
-    tts = gTTS(text=text_to_speak, lang='en')
-    tts.save('media/speecheng.mp3')
-    
-    text_to_speak = hindi  # Replace with your desired text
-    txt = (request.GET.get('text','default'))
-    print(txt)
-    tts = gTTS(text=text_to_speak, lang='hi')
-    tts.save('media/speechhi.mp3')
-    
-    text_to_speak = marathi  # Replace with your desired text
-    txt = (request.GET.get('text','default'))
-    print(txt)
-    tts = gTTS(text=text_to_speak, lang='mr')
-    tts.save('media/speechmr.mp3')
+    if is_internet_available():
+        # Code to run when there is an active internet connection
+        print("Internet is available. Running code which uses google api.")
+        # Your code A here
+        def translate_to_hindi(text):
+            translator = Translator()
+            translated_text = translator.translate(text, src='en', dest='hi')
+            return translated_text.text
+
+        # english_text = text
+        hindi= translate_to_hindi(english_text)
 
 
+        def translate_to_marathi(text):
+            translator = Translator()
+            translated_text = translator.translate(text, src='en', dest='mr')
+            return translated_text.text
+
+        marathi = translate_to_marathi(english_text)
+
+        text_to_speak = english_text  # Replace with your desired text
+        txt = (request.GET.get('text','default'))
+        print(txt)
+        tts = gTTS(text=text_to_speak, lang='en')
+        tts.save('media/speecheng.mp3')
+        
+        text_to_speak = hindi  # Replace with your desired text
+        txt = (request.GET.get('text','default'))
+        print(txt)
+        tts = gTTS(text=text_to_speak, lang='hi')
+        tts.save('media/speechhi.mp3')
+        
+        text_to_speak = marathi  # Replace with your desired text
+        txt = (request.GET.get('text','default'))
+        print(txt)
+        tts = gTTS(text=text_to_speak, lang='mr')
+        tts.save('media/speechmr.mp3')
+
+        params = {'english':english_text, 'hindi':hindi, 'marathi':marathi}
+    else:
+        # Code to run when there is no active internet connection
+        print("No internet connection. Running code B.")
+        # Your code B here
 
 
-    params = {'english':text, 'hindi':hindi, 'marathi':marathi}
+
+
+# params = {'english':text, 'hindi':hindi, 'marathi':marathi}
     return render(request,'anounce.html',params)
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def anounceinhindi(request):
     text = (request.GET.get('Text','default'))
