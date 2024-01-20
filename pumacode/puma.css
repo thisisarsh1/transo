@@ -23,7 +23,7 @@ body{
   top: 0;
   left: 0;
   color: transparent;
-  -webkit-text-stroke: 0.15vw black;
+  -webkit-text-stroke: 0.15vw rgb(0, 0, 0);
 }
 
 img{
